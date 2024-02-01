@@ -9,7 +9,10 @@ import "../coffeeaccesscontrol/RetailerRole.sol";
 contract Ownable is ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
     address private owner;
 
-    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
+    event OwnershipTransferred(
+        address indexed previousOwner,
+        address indexed newOwner
+    );
 
     modifier onlyOwner() {
         require(msg.sender == owner, "Only the owner can call this function");
@@ -19,6 +22,10 @@ contract Ownable is ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
     constructor() {
         owner = msg.sender;
         emit OwnershipTransferred(address(0), owner);
+    }
+
+    function isOwner(address account) public view returns (bool) {
+        return account == owner;
     }
 
     function transferOwnership(address newOwner) public onlyOwner {

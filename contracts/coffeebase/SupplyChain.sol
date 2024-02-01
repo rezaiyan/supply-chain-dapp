@@ -7,6 +7,7 @@ contract SupplyChain is Ownable {
     address owner;
     uint upc;
     uint sku;
+    uint256[] private itemIds;
     mapping(uint => Item) items;
     mapping(uint => string[]) itemsHistory;
 
@@ -86,6 +87,7 @@ contract SupplyChain is Ownable {
         string memory _productNotes
     ) public onlyFarmer {
         sku += 1;
+        itemIds.push(_upc);
         items[_upc] = Item({
             sku: sku,
             upc: _upc,
@@ -275,6 +277,18 @@ contract SupplyChain is Ownable {
             item.retailerID,
             item.consumerID
         );
+    }
+
+    function getAllItems() public view returns (Item[] memory) {
+        uint256 totalItems = itemIds.length;
+        Item[] memory allItems = new Item[](totalItems);
+
+        for (uint256 i = 0; i < totalItems; i++) {
+            uint256 _upc = itemIds[i];
+            allItems[i] = items[_upc];
+        }
+
+        return allItems;
     }
 
     function returnAmount(uint _upc, address _address) internal {
