@@ -1,0 +1,45 @@
+>> npx hardhat test
+
+
+  ConsumerRole
+    ✔ Should return true for a consumer
+    ✔ Should not add the same consumer
+    ✔ Should add a consumer
+    ✔ Should renounce the consumer role
+    ✔ Should not allow non-consumers to add a consumer
+    ✔ Should not allow non-consumers to renounce the consumer role
+
+  DistributorRole
+    ✔ Should return true for a distributor
+    ✔ Should not add the same distributor
+    ✔ Should add a distributor
+    ✔ Should renounce the distributor role
+    ✔ Should not allow non-distributors to add a distributor
+    ✔ Should not allow non-distributors to renounce the distributor role
+
+  FarmerRole
+    ✔ Should return true for a farmer
+    ✔ Should not add the same farmer
+    ✔ Should add a farmer
+    ✔ Should renounce the farmer role
+    ✔ Should not allow non-farmers to add a farmer
+    ✔ Should not allow non-farmers to renounce the farmer role
+
+  RetailerRole
+    ✔ Should return true for a retailer
+    ✔ Should not add a same retailer
+    ✔ Should add a retailer
+    ✔ Should renounce the retailer role
+    ✔ Should not allow non-retailers to add a retailer
+    ✔ Should not allow non-retailers to renounce the retailer role
+
+  SupplyChain
+    ✔ should allow a farmer to harvest, process, pack, sell, ship, receive, and purchase an item (147ms)
+    ✔ should not allow a non-farmer to harvest an item
+    ✔ should not allow a distributor to ship an item without buying it
+    ✔ should revert if a distributor does not send enough funds to buy an item (89ms)
+    ✔ should not allow a non-distributor to buy an item (86ms)
+
+
+  29 passing (2s)
+

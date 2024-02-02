@@ -17,7 +17,7 @@ describe('ConsumerRole', function () {
     });
 
     it('Should return true for a consumer', async function () {
-        expect(await consumerRole.isConsumer(consumerAddress)).to.equal(true);
+                expect(await consumerRole.isConsumer(consumerAddress)).to.equal(true);
     });
 
     it('Should not add the same consumer', async function () {

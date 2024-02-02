@@ -2,9 +2,10 @@
   "name": "supply-chain-dapp",
   "dependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
-    "dotenv": "^16.3.1",
     "chai": "^4.4.1",
-    "openzeppelin-solidity": "^4.0",
-    "hardhat": "^2.19.4"
+    "dotenv": "^16.3.1",
+    "hardhat": "^2.19.4",
+    "hardhat-deploy": "^0.11.45",
+    "openzeppelin-solidity": "^4.0"
   }
 }

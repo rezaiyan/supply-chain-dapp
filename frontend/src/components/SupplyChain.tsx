@@ -53,7 +53,7 @@ export function SupplyChain(): ReactElement {
 
     //if page refreshed, this useEffect will restore the contract
     useEffect(() => {
-        const storedContractAddr = localStorage.getItem('supplyChainContractAddr');
+        const storedContractAddr = "0x9d664ca2a6c0b5e022a466a065a5b98476fd0f8e";
 
         if (storedContractAddr) {
             setSupplyChainContractAddr(storedContractAddr);
@@ -166,7 +166,7 @@ export function SupplyChain(): ReactElement {
     async function handleDeployContract(event: MouseEvent<HTMLButtonElement>): Promise<void> {
         event.preventDefault();
 
-        if (supplyChainContract || !signer) {
+        if (!signer) {
             return;
         }
 
@@ -497,7 +497,7 @@ export function SupplyChain(): ReactElement {
 
             switch (roleToAdd) {
                 case Role.Farmer:
-                    const farmer = await contractWithSigner.addFarmer(address);
+                    const farmer = await contractWithSigner.renounceFarmer();
                     setFarmer(farmer);
                     break;
                 case Role.Distributor:
@@ -543,7 +543,6 @@ export function SupplyChain(): ReactElement {
 
                         <ActionButtonContainer>
                             <StyledActionButton
-                                disabled={!active || !!supplyChainContract}
                                 onClick={handleDeployContract}
                             >
                                 Deploy Supply Chain Contract
@@ -552,7 +551,6 @@ export function SupplyChain(): ReactElement {
 
                         <ActionButtonContainer>
                             <StyledActionButton
-                                disabled={!active || !supplyChainContract}
                                 onClick={handleDestroyContract}
                             >
                                 🔥 Destroy Supply Chain Contract
