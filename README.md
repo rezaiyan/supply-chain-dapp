@@ -62,7 +62,8 @@ To run the Supply Chain Dapp, follow these instructions:
    ```
    npx hardhat test
    ```
-After running the tests, you can find the successful test results like `./testResultLog.txt` file.
+After running the tests, you can find the successful test results like 
+![testResultLog.txt](testResultLog.txt) file.
 
 7. Deploy the smart contract to the local Ethereum network (localhost) or the sepolia testnet (update the network name in the command as needed):
    ```
