@@ -1,4 +1,4 @@
-# Supply Chain Dapp Readme
+# Supply Chain Dapp
 
 This readme provides information and instructions for running the Supply Chain Dapp, a decentralized application designed to manage the lifecycle of an item from harvesting to purchase. The application utilizes smart contracts on the Ethereum blockchain and allows different roles, such as owner, farmer, distributor, retailer, and consumer, to interact with the supply chain process.
 
@@ -6,16 +6,16 @@ This readme provides information and instructions for running the Supply Chain D
 
 Here are the links to relevant transactions and the contract on the Ethereum blockchain:
 
-- **Deployment Transaction**: [Click here](https://sepolia.etherscan.io/tx/0xd306a6f7cbd118fd4487c45963200be15d6dc4c2278dccd50415d5fa56bb5818)
-- **Contract**: [Click here](https://sepolia.etherscan.io/address/0x9d664ca2a6c0b5e022a466a065a5b98476fd0f8e)
-- **Harvest Transaction**: [Click here](https://sepolia.etherscan.io/tx/0x439996898f0ac1a4d5f98a2d8a82f2e3fb92b50b5ee9be18d62f756b93e90cce)
-- **Process Transaction**: [Click here](https://sepolia.etherscan.io/tx/0xe4a335acb85e65a6a4a160184e514f5c9539341a684caee83036d4759ae76c0e)
-- **Pack Transaction**: [Click here](https://sepolia.etherscan.io/tx/0x90fe3ffa22c1f437a3d170a07ac8277adea2f172fba5f9b28759d9f1bb866956)
-- **Sell Transaction**: [Click here](https://sepolia.etherscan.io/tx/0x9c32ef62dbfbec833431781e38e4c1453226bb628897f7bf7b9f4688babbf355)
-- **Buy Transaction**: [Click here](https://sepolia.etherscan.io/tx/0x42b9f89b95d9bd18b9fc1e82af009d739f5db378d0726cbf013b0a862e00280d)
-- **Ship Transaction**: [Click here](https://sepolia.etherscan.io/tx/0xcc4956f7cf72c4b4a7634bb0df2463051a70d729cfa57b1ecb89eead2878bccd)
-- **Receive Transaction**: [Click here](https://sepolia.etherscan.io/tx/0x47c24b44aecd3a76985e896fab297146f0826c41a78f1f88a0a6425c8c5f101d)
-- **Purchased Transaction**: [Click here](https://sepolia.etherscan.io/tx/0x9d24a054f5a0226db27f263cd6f7b8ddf3b888d9459e9b7c8a87b91c5deb68b8)
+- **Deployment Transaction**: 0xd306a6f7cbd118fd4487c45963200be15d6dc4c2278dccd50415d5fa56bb5818 [Click here](https://sepolia.etherscan.io/tx/0xd306a6f7cbd118fd4487c45963200be15d6dc4c2278dccd50415d5fa56bb5818)
+- **Contract**: 0x9d664ca2a6c0b5e022a466a065a5b98476fd0f8e [Click here](https://sepolia.etherscan.io/address/0x9d664ca2a6c0b5e022a466a065a5b98476fd0f8e)
+- **Harvest Transaction**: 0x439996898f0ac1a4d5f98a2d8a82f2e3fb92b50b5ee9be18d62f756b93e90cce [Click here](https://sepolia.etherscan.io/tx/0x439996898f0ac1a4d5f98a2d8a82f2e3fb92b50b5ee9be18d62f756b93e90cce)
+- **Process Transaction**: 0xe4a335acb85e65a6a4a160184e514f5c9539341a684caee83036d4759ae76c0e [Click here](https://sepolia.etherscan.io/tx/0xe4a335acb85e65a6a4a160184e514f5c9539341a684caee83036d4759ae76c0e)
+- **Pack Transaction**: 0x90fe3ffa22c1f437a3d170a07ac8277adea2f172fba5f9b28759d9f1bb866956 [Click here](https://sepolia.etherscan.io/tx/0x90fe3ffa22c1f437a3d170a07ac8277adea2f172fba5f9b28759d9f1bb866956)
+- **Sell Transaction**: 0x9c32ef62dbfbec833431781e38e4c1453226bb628897f7bf7b9f4688babbf355 [Click here](https://sepolia.etherscan.io/tx/0x9c32ef62dbfbec833431781e38e4c1453226bb628897f7bf7b9f4688babbf355)
+- **Buy Transaction**: 0x42b9f89b95d9bd18b9fc1e82af009d739f5db378d0726cbf013b0a862e00280d [Click here](https://sepolia.etherscan.io/tx/0x42b9f89b95d9bd18b9fc1e82af009d739f5db378d0726cbf013b0a862e00280d)
+- **Ship Transaction**: 0xcc4956f7cf72c4b4a7634bb0df2463051a70d729cfa57b1ecb89eead2878bccd [Click here](https://sepolia.etherscan.io/tx/0xcc4956f7cf72c4b4a7634bb0df2463051a70d729cfa57b1ecb89eead2878bccd)
+- **Receive Transaction**: 0x47c24b44aecd3a76985e896fab297146f0826c41a78f1f88a0a6425c8c5f101d [Click here](https://sepolia.etherscan.io/tx/0x47c24b44aecd3a76985e896fab297146f0826c41a78f1f88a0a6425c8c5f101d)
+- **Purchased Transaction**: 0x9d24a054f5a0226db27f263cd6f7b8ddf3b888d9459e9b7c8a87b91c5deb68b8 [Click here](https://sepolia.etherscan.io/tx/0x9d24a054f5a0226db27f263cd6f7b8ddf3b888d9459e9b7c8a87b91c5deb68b8)
 
 ## About the Supply Chain Dapp
 
@@ -98,5 +98,3 @@ Here are some screenshots of the Supply Chain Dapp:
 ![Screenshot 4](./assets/image5.png)
 
 ![Screenshot 4](./assets/image6.png)
-
-Enjoy using the Supply Chain Dapp to manage your supply chain processes! If you have any questions or encounter issues, please refer to the documentation or contact the developer for assistance.
