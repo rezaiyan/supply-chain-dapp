@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import { ActivateDeactivate } from './components/ActivateDeactivate';
 import { SupplyChain } from './components/SupplyChain';
 import { SectionDivider } from './components/SectionDivider';
-import { SignMessage } from './components/SignMessage';
 import { WalletStatus } from './components/WalletStatus';
 
 const StyledAppDiv = styled.div`
@@ -17,8 +16,6 @@ export function App(): ReactElement {
       <ActivateDeactivate />
       <SectionDivider />
       <WalletStatus />
-      <SectionDivider />
-      <SignMessage />
       <SectionDivider />
       <SupplyChain />
     </StyledAppDiv>

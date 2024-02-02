@@ -10,7 +10,7 @@ export const StyledButton = styled.button`
   place-self: center;
 `;
 
-export const StyledGreetingDiv = styled.div`
+export const StyledDiv = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 1fr);
   grid-template-columns: 135px 2.7fr 1fr;
@@ -26,7 +26,8 @@ export const StyledActionButton = styled.button`
   border-color: blue;
   cursor: pointer;
   place-self: center;
-  padding: 0.5rem 1rem; /* Adjust the values as needed */
+  padding: 0.5rem 1rem;
+  margin: 8px;
 `;
 
 export const StyledItemList = styled.div`
@@ -41,4 +42,36 @@ export const StyledItemCard = styled.div`
 
 export const StyledLabel = styled.label`
   font-weight: bold;
+  text-align: left;
+`;
+
+// Define a container for your UI elements
+export const StyledContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  grid-gap: 20px; /* Adjust the gap as needed */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
+// Define a container for the top section
+export const TopSection = styled.div`
+  grid-column: span 2;
+`;
+
+// Define a container for the bottom section
+export const BottomSection = styled.div`
+  grid-column: span 2;
+`;
+
+// Define a container for the item list
+export const ItemListContainer = styled.div`
+  grid-column: span 2;
+  text-align: left;
+`;
+
+// Define a container for each action button
+export const ActionButtonContainer = styled.div`
+  margin: 10px;
 `;

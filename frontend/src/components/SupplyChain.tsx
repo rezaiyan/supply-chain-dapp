@@ -9,17 +9,22 @@ import {
     useEffect,
     useState,
     Provider,
-    SectionDivider,
-    StyledGreetingDiv,
     StyledActionButton,
-    StyledItemList,
+    StyledContainer,
+    TopSection,
+    BottomSection,
+    ItemListContainer,
+    ActionButtonContainer,
     StyledItemCard,
     StyledLabel,
     Item,
     State,
     Role,
-    SupplyChainArtifact
+    SupplyChainArtifact,
+    SectionDivider
 } from './Base';
+
+
 
 export function SupplyChain(): ReactElement {
     const context = useWeb3React<Provider>();
@@ -137,24 +142,14 @@ export function SupplyChain(): ReactElement {
                 .then((result) => {
                     console.log("Current role: " + roleToString(result));
                     setRole(result);
-                    switch (result) {
-                        case Role.Farmer:
-                            setFarmer(result === Role.Farmer);
-                            break;
-                        case Role.Distributor:
-                            setDistributor(result === Role.Distributor);
-                            break;
-                        case Role.Retailer:
-                            setRetailer(result === Role.Retailer);
-                            break;
-                        case Role.Consumer:
-                            setConsumer(result === Role.Consumer);
-                            break;
-                        default:
-                            break;
-                    }
+                    setFarmer(result === Role.Farmer);
+                    setDistributor(result === Role.Distributor);
+                    setRetailer(result === Role.Retailer);
+                    setConsumer(result === Role.Consumer);
+                    setOwner(result === Role.Owner || result === Role.Unknown);
                 })
                 .catch((error) => {
+                    setOwner(true);
                     console.error("Error checking roles:", error);
                     setRole(Role.Unknown);
                 });
@@ -237,6 +232,7 @@ export function SupplyChain(): ReactElement {
         event.preventDefault();
 
         if (!signer) {
+            setOwner(true);
             window.alert('👽 Your Role is unknown! 👽');
             return;
         }
@@ -245,20 +241,19 @@ export function SupplyChain(): ReactElement {
                 const contractWithSigner = supplyChainContract?.connect(signer);
 
                 const upcInput = prompt('What is the Universal Product Code (UPC)?') || '0';
-                const farmerIdInput = prompt('What is your farmer ID?') || '';
                 const farmNameInput = prompt('What is your farm name?') || '';
                 const farmInfoInput = prompt('Tell us about farm Information') || '';
                 const latLongInput = prompt('What is your farm location with this format (lat,long)?') || '0,0';
                 const noteInput = prompt('Any note you want to add to the product?') || '';
 
                 //Validate inputs
-                if (isNaN(parseInt(upcInput)) || !farmerIdInput || !farmNameInput || !farmInfoInput || !latLongInput || !noteInput) {
+                if (isNaN(parseInt(upcInput)) || !farmNameInput || !farmInfoInput || !latLongInput || !noteInput) {
                     window.alert('Invalid input. Please provide valid data');
                     return;
                 }
 
                 const upc = parseInt(upcInput);
-                const farmerId = farmerIdInput;
+                const farmerId = signer.getAddress();
                 const farmName = farmNameInput;
                 const farmInfo = farmInfoInput;
                 const [lat, long] = latLongInput.split(',');
@@ -514,7 +509,7 @@ export function SupplyChain(): ReactElement {
                     setRetailer(retailer);
                     break;
                 case Role.Consumer:
-                   const consumer = await contractWithSigner.addConsumer(address);
+                    const consumer = await contractWithSigner.addConsumer(address);
                     setConsumer(consumer);
                     break;
                 default:
@@ -531,162 +526,181 @@ export function SupplyChain(): ReactElement {
     }
 
     return (
-        <>
-            <div>
-                {/* TODO only owner Role should be able to do this functionalities */}
-                {!isOwner && (
-                    <div>
-                        {/* Add Farmer Button */}
-                        <StyledActionButton
-                            disabled={!active || !supplyChainContract}
-                            onClick={() => handleAddRole(Role.Farmer)}
-                        >
-                            Add Farmer
-                        </StyledActionButton>
+        <StyledContainer>
 
-                        {/* Add Distributor Button */}
-                        <StyledActionButton
-                            disabled={!active || !supplyChainContract}
-                            onClick={() => handleAddRole(Role.Distributor)}
-                        >
-                            Add Distributor
-                        </StyledActionButton>
+            <StyledLabel>
+                Contract Address: 
+            </StyledLabel>
+                {supplyChainContractAddr ? supplyChainContractAddr : <em>&lt;Contract not yet deployed&gt;</em>}
+           
+            <StyledLabel>
+                Your Role: 
+            </StyledLabel>
+            {roleToString(role)}
+            <TopSection>
+                {isOwner && (
+                    <>
 
-                        {/* Add Retailer Button */}
-                        <StyledActionButton
-                            disabled={!active || !supplyChainContract}
-                            onClick={() => handleAddRole(Role.Retailer)}
-                        >
-                            Add Retailer
-                        </StyledActionButton>
+                        <ActionButtonContainer>
+                            <StyledActionButton
+                                disabled={!active || !!supplyChainContract}
+                                onClick={handleDeployContract}
+                            >
+                                Deploy Supply Chain Contract
+                            </StyledActionButton>
+                        </ActionButtonContainer>
 
-                        {/* Add Consumer Button */}
-                        <StyledActionButton
-                            disabled={!active || !supplyChainContract}
-                            onClick={() => handleAddRole(Role.Consumer)}
-                        >
-                            Add Consumer
-                        </StyledActionButton>
-                    </div>
+                        <ActionButtonContainer>
+                            <StyledActionButton
+                                disabled={!active || !supplyChainContract}
+                                onClick={handleDestroyContract}
+                            >
+                                🔥 Destroy Supply Chain Contract
+                            </StyledActionButton>
+                        </ActionButtonContainer>
+
+
+                        <SectionDivider />
+
+                        <ActionButtonContainer>
+                            <StyledActionButton
+                                disabled={!active || !supplyChainContract}
+                                onClick={() => handleAddRole(Role.Farmer)}
+                            >
+                                Add Farmer
+                            </StyledActionButton>
+                        </ActionButtonContainer>
+
+                        <ActionButtonContainer>
+                            <StyledActionButton
+                                disabled={!active || !supplyChainContract}
+                                onClick={() => handleAddRole(Role.Distributor)}
+                            >
+                                Add Distributor
+                            </StyledActionButton>
+                        </ActionButtonContainer>
+
+                        <ActionButtonContainer>
+                            <StyledActionButton
+                                disabled={!active || !supplyChainContract}
+                                onClick={() => handleAddRole(Role.Retailer)}
+                            >
+                                Add Retailer
+                            </StyledActionButton>
+                        </ActionButtonContainer>
+
+                        <ActionButtonContainer>
+                            <StyledActionButton
+                                disabled={!active || !supplyChainContract}
+                                onClick={() => handleAddRole(Role.Consumer)}
+                            >
+                                Add Consumer
+                            </StyledActionButton>
+                        </ActionButtonContainer>
+                    </>
                 )}
-            </div>
 
-            {/* Deploy Contract Button */}
-            { (
-                <StyledActionButton
-                    disabled={!active || !!supplyChainContract}
-                    onClick={handleDeployContract}
-                >
-                    Deploy Supply Chain Contract
-                </StyledActionButton>
-            )}
+                <SectionDivider />
+            </TopSection>
 
-            {/* Destroy Contract Button */}
-            { (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleDestroyContract}
-                >
-                    🔥 Destroy Supply Chain Contract
-                </StyledActionButton>
-            )}
+            <BottomSection>
+                {(isFarmer || isOwner) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handleHarvestItem}
+                        >
+                            🌱 Harvest Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-            {/* Contract Address Display */}
-            <StyledGreetingDiv>
-                <StyledLabel>Contract Address:</StyledLabel>
-                <div>
-                    {supplyChainContractAddr ? supplyChainContractAddr : <em>&lt;Contract not yet deployed&gt;</em>}
-                </div>
+                {/* Process Item Button */}
+                {(isFarmer || isOwner) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handleProcessItem}
+                        >
+                            ⚙️ Process Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-                <div></div>
-                <StyledLabel>Your Role:</StyledLabel>
-                {roleToString(role)}
-            </StyledGreetingDiv>
+                {/* Pack Item Button */}
+                {(isFarmer || isOwner) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handlePackItem}
+                        >
+                            📦 Pack Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-            <SectionDivider />
+                {/* Put Item Up For Sale Button */}
+                {(isFarmer || isOwner) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handleItemUpForSale}
+                        >
+                            💰 Put Item For Sale
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-            {/* Harvest Item Button */}
-            {(isFarmer || isOwner) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleHarvestItem}
-                >
-                    🌱 Harvest Item
-                </StyledActionButton>
-            )}
+                {/* Buy Item Button */}
+                {(isDistributor) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handleBuyItem}
+                        >
+                            🛒 Buy Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-            {/* Process Item Button */}
-            {(isFarmer || isOwner) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleProcessItem}
-                >
-                    ⚙️ Process Item
-                </StyledActionButton>
-            )}
+                {/* Ship Item Button */}
+                {(isDistributor) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handleShipItem}
+                        >
+                            🚚 Ship Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-            {/* Pack Item Button */}
-            {(isFarmer || isOwner) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handlePackItem}
-                >
-                    📦 Pack Item
-                </StyledActionButton>
-            )}
+                {/* Receive Item Button */}
+                {(isRetailer) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handleReceiveItem}
+                        >
+                            📦 Receive Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
 
-            {/* Put Item Up For Sale Button */}
-            {(isFarmer || isOwner) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleItemUpForSale}
-                >
-                    💰 Put Item For Sale
-                </StyledActionButton>
-            )}
+                {/* Purchase Item Button */}
+                {(isConsumer) && (
+                    <ActionButtonContainer>
+                        <StyledActionButton
+                            disabled={!active || !supplyChainContract}
+                            onClick={handlePurchaseItem}
+                        >
+                            🛍️ Purchase Item
+                        </StyledActionButton>
+                    </ActionButtonContainer>
+                )}
+            </BottomSection>
 
-            {/* Buy Item Button */}
-            {(isDistributor) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleBuyItem}
-                >
-                    🛒 Buy Item
-                </StyledActionButton>
-            )}
-
-            {/* Ship Item Button */}
-            {(isDistributor) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleShipItem}
-                >
-                    🚚 Ship Item
-                </StyledActionButton>
-            )}
-
-            {/* Receive Item Button */}
-            {(isRetailer) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handleReceiveItem}
-                >
-                    📦 Receive Item
-                </StyledActionButton>
-            )}
-
-            {/* Purchase Item Button */}
-            {(isConsumer) && (
-                <StyledActionButton
-                    disabled={!active || !supplyChainContract}
-                    onClick={handlePurchaseItem}
-                >
-                    🛍️ Purchase Item
-                </StyledActionButton>
-            )}
-
-            {/* Display the list of items */}
-            <StyledItemList>
+            <ItemListContainer>
                 <h2>All Items</h2>
                 {allItems.map((item: Item, index: number) => (
                     <StyledItemCard key={index}>
@@ -705,9 +719,8 @@ export function SupplyChain(): ReactElement {
                         <strong>Consumer ID: </strong>{item.consumerID}<br />
                     </StyledItemCard>
                 ))}
-            </StyledItemList>
-
-        </>
+            </ItemListContainer>
+        </StyledContainer>
     );
 
 }

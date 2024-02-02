@@ -1,13 +1,13 @@
 import { task } from 'hardhat/config';
 import { HardhatRuntimeEnvironment } from 'hardhat/types';
 
-task('deploy', 'Deploy RetailerRole contract').setAction(
+task('deploy', 'Deploy SupplyChain contract').setAction(
   async (_, hre: HardhatRuntimeEnvironment): Promise<void> => {
-    const RetailerRole = await hre.ethers.getContractFactory('RetailerRole');
-    const retailerRole = await RetailerRole.deploy();
+    const SupplyChain = await hre.ethers.getContractFactory('SupplyChain');
+    const supplyChain = await SupplyChain.deploy();
 
-    await retailerRole.deployed();
+    await supplyChain.deployed();
 
-    console.log('RetailerRole deployed to:', retailerRole.address);
+    console.log('SupplyChain deployed to:', supplyChain.address);
   }
 );

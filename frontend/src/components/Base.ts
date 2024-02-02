@@ -6,11 +6,16 @@ export type { Provider } from '../utils/provider';
 export type { MouseEvent, ReactElement } from 'react';
 export {
     StyledButton,
-    StyledGreetingDiv,
+    StyledDiv,
     StyledActionButton,
     StyledItemList,
     StyledItemCard,
     StyledLabel,
+    StyledContainer,
+    TopSection,
+    BottomSection,
+    ItemListContainer,
+    ActionButtonContainer,
 } from '../styles';
 
 export { Item, State, Role } from '../domain/Item';
