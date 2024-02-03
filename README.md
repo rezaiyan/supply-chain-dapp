@@ -98,3 +98,41 @@ Here are some screenshots of the Supply Chain Dapp:
 ![Screenshot 4](./assets/image5.png)
 
 ![Screenshot 4](./assets/image6.png)
+
+
+## UML Diagrams
+
+For detailed UML diagrams illustrating the smart contract structure and interactions, please refer to the following files:
+
+![SupplyChainDiagrams.jpeg](./UML/SupplyChainDiagrams.jpeg)
+- [SupplyChainDiagrams.drawio](https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&title=SupplyChain%20Diagram.drawio#Uhttps%3A%2F%2Fraw.githubusercontent.com%2Frezaiyan%2Fsupply-chain-dapp%2Fmain%2FUML%2FSupplyChain%2520Diagram.drawio)
+
+## Libraries Used
+
+### Supply Chain Dapp (Smart Contracts)
+
+- `@nomicfoundation/hardhat-toolbox` (Version: ^4.0.0)
+- `chai` (Version: ^4.4.1)
+- `dotenv` (Version: ^16.3.1)
+- `hardhat` (Version: ^2.19.4)
+- `hardhat-deploy` (Version: ^0.11.45)
+- `openzeppelin-solidity` (Version: ^4.0)
+
+### Frontend App
+
+- `@testing-library/jest-dom` (Version: ^5.14.1)
+- `@testing-library/react` (Version: ^12.0.0)
+- `@testing-library/user-event` (Version: ^13.2.1)
+- `@types/jest` (Version: ^27.0.1)
+- `@types/node` (Version: ^16.7.13)
+- `@types/react` (Version: ^17.0.20)
+- `@types/react-dom` (Version: ^17.0.9)
+- `@types/styled-components` (Version: ^5.1.18)
+- `@web3-react/core` (Version: ^6.1.9)
+- `@web3-react/injected-connector` (Version: ^6.0.7)
+- `ethers` (Version: ^5.5.2)
+- `react` (Version: ^17.0.2)
+- `react-dom` (Version: ^17.0.2)
+- `react-scripts` (Version: 5.0.0)
+- `styled-components` (Version: ^5.3.3)
+- `truffle-hdwallet-provider` (Version: ^1.0.17)
